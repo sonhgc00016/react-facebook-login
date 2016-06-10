@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import styles from '../styles/facebook.scss';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 class FacebookLogin extends React.Component {
 
@@ -15,8 +16,7 @@ class FacebookLogin extends React.Component {
     fields: PropTypes.string,
     cssClass: PropTypes.string,
     version: PropTypes.string,
-    icon: PropTypes.string,
-    language: PropTypes.string,
+    language: PropTypes.string
   };
 
   static defaultProps = {
@@ -27,12 +27,17 @@ class FacebookLogin extends React.Component {
     size: 'metro',
     fields: 'name',
     cssClass: 'kep-login-facebook',
-    version: '2.3',
-    language: 'en_US',
+    version: '2.5',
+    language: 'en_US'
   };
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      isFetching: false,
+      isLoading: true
+    };
   }
 
   componentDidMount() {
@@ -41,18 +46,24 @@ class FacebookLogin extends React.Component {
 
     document.body.appendChild(fbRoot);
 
-    window.fbAsyncInit = () => {
-      FB.init({
-        appId: this.props.appId,
-        xfbml: this.props.xfbml,
-        cookie: this.props.cookie,
-        version: 'v' + this.props.version,
-      });
+    if (window.FB) {
+      this.setState({ isLoading: false });
+    } else {
+      window.fbAsyncInit = () => {
+        FB.init({
+          appId: this.props.appId,
+          xfbml: this.props.xfbml,
+          cookie: this.props.cookie,
+          version: 'v' + this.props.version,
+        });
 
-      if (this.props.autoLoad) {
-        FB.getLoginStatus(this.checkLoginState);
-      }
-    };
+        if (this.props.autoLoad) {
+          FB.getLoginStatus(this.checkLoginState);
+        }
+
+        this.setState({ isLoading: false });
+      };
+    }
 
     // Load the SDK asynchronously
     ((d, s, id) => {
@@ -61,60 +72,59 @@ class FacebookLogin extends React.Component {
       let js = element;
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = '//connect.facebook.net/' + this.props.language + '/all.js';
+      js.src = '//connect.facebook.net/' + this.props.language + '/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   }
 
-  responseApi = (authResponse) => {
-    FB.api('/me', { fields: this.props.fields }, (me) => {
-      me.accessToken = authResponse.accessToken;
-      this.props.callback(me);
-    });
-  };
-
   checkLoginState = (response) => {
     if (response.authResponse) {
-      this.responseApi(response.authResponse);
+      this.setState({isFetching: false});
+      this.props.callback({success: true, data: response.authResponse});
     } else {
       if (this.props.callback) {
-        this.props.callback({ status: response.status });
+        this.setState({isFetching: false});
+        this.props.callback({success: false, data: response.authResponse});
       }
     }
   };
 
   click = () => {
+    this.setState({ isFetching: true});
     FB.login(this.checkLoginState, { scope: this.props.scope });
   };
 
-  renderWithFontAwesome() {
-    return (
-      <div>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-         <button
-            className={this.props.cssClass + ' ' + this.props.size}
-            onClick={this.click}>
-          <i className={'fa ' + this.props.icon}></i> {this.props.textButton}
-        </button>
-
-        <style dangerouslySetInnerHTML={{ __html: styles }}></style>
-      </div>
-    )
-  }
-
   render() {
-    if (this.props.icon) {
-      return this.renderWithFontAwesome();
+    var iconFetching = <div style={{position: 'absolute', top: '10px', left: '30px'}}>
+      <RefreshIndicator
+        size={40}
+        left={10}
+        top={0}
+        status="loading"
+        loadingColor={'white'}
+        style={{display: 'inline-block',position: 'relative',backgroundColor: '#4C69BA', boxShadow: 'none'}}
+      />
+    </div>;
+    var textLogin;
+
+    if (this.state.isFetching) {
+      textLogin = <div style={{marginLeft: '40px'}}>Logging In...</div>;
+    } else {
+      iconFetching = this.state.isLoading ? iconFetching : '';
+      textLogin = this.state.isLoading ? <div style={{marginLeft: '40px'}}>Loading...</div> : this.props.textButton;
     }
 
+    var isDisabled = this.state.isLoading ? true : false;
+
     return (
       <div>
-        <button
-            className={this.props.cssClass + ' ' + this.props.size}
-            onClick={this.click}>
-          {this.props.textButton}
+        <button style={{position: 'absolute', minWidth: '250px', width: '20%', height: '9%'}}
+          disabled={isDisabled}
+          className={this.props.cssClass + ' ' + this.props.size}
+          onClick={this.click}>
+          {iconFetching} {textLogin}
         </button>
-        
+
         <style dangerouslySetInnerHTML={{ __html: styles }}></style>
       </div>
     );

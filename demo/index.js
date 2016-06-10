@@ -3,16 +3,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FacebookLogin from '../src/facebook';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const responseFacebook = (response) => {
   console.log(response);
 }
 
 ReactDOM.render(
-  <FacebookLogin
-    appId="1088597931155576"
-    autoLoad={true}
-    callback={responseFacebook}
-    icon="fa-facebook" />,
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <FacebookLogin
+      appId="1733556690196497"
+      autoLoad={true}
+      callback={responseFacebook}
+      icon="fa-facebook" />
+  </MuiThemeProvider>,
   document.getElementById('demo')
 );
