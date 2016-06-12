@@ -20,7 +20,7 @@ class FacebookLogin extends React.Component {
   };
 
   static defaultProps = {
-    textButton: 'Login with Facebook',
+    textButton: 'Đăng nhập Facebook',
     scope: 'public_profile, email',
     xfbml: false,
     cookie: false,
@@ -98,8 +98,8 @@ class FacebookLogin extends React.Component {
     const myStyles = {
       iconFetching: {
         position: 'absolute',
-        top: '4px',
-        left: '30px'
+        top: '0px',
+        left: '40px'
       },
       iconFetchingBound: {
         display: 'inline-block',
@@ -109,8 +109,10 @@ class FacebookLogin extends React.Component {
       },
       btnFB: {
         minWidth: '250px',
-        width: '25%',
-        height: '52px'
+        width: '30%',
+        height: '45px',
+        padding: '0',
+        fontSize: '14px'
       }
     };
     var iconFetching = <div style={myStyles.iconFetching}>
