@@ -112,7 +112,7 @@ class FacebookLogin extends React.Component {
         minWidth: '250px',
         width: '30%',
         height: '45px',
-        padding: '0',
+        padding: '0px',
         fontSize: '14px'
       }
     };
