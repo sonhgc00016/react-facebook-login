@@ -95,14 +95,32 @@ class FacebookLogin extends React.Component {
   };
 
   render() {
-    var iconFetching = <div style={{position: 'absolute', top: '10px', left: '30px'}}>
+    const myStyles = {
+      iconFetching: {
+        position: 'absolute',
+        top: '4px',
+        left: '30px'
+      },
+      iconFetchingBound: {
+        display: 'inline-block',
+        position: 'relative',
+        backgroundColor: '#4C69BA',
+        boxShadow: 'none'
+      },
+      btnFB: {
+        minWidth: '250px',
+        width: '25%',
+        height: '50px'
+      }
+    };
+    var iconFetching = <div style={myStyles.iconFetching}>
       <RefreshIndicator
         size={40}
         left={10}
         top={0}
         status="loading"
         loadingColor={'white'}
-        style={{display: 'inline-block',position: 'relative',backgroundColor: '#4C69BA', boxShadow: 'none'}}
+        style={myStyles.iconFetchingBound}
       />
     </div>;
     var textLogin;
@@ -118,7 +136,7 @@ class FacebookLogin extends React.Component {
 
     return (
       <div>
-        <button style={{position: 'absolute', minWidth: '250px', width: '20%', height: '9%'}}
+        <button style={myStyles.btnFB}
           disabled={isDisabled}
           className={this.props.cssClass + ' ' + this.props.size}
           onClick={this.click}>
