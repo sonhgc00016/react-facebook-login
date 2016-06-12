@@ -110,7 +110,7 @@ class FacebookLogin extends React.Component {
       btnFB: {
         minWidth: '250px',
         width: '25%',
-        height: '50px'
+        height: '52px'
       }
     };
     var iconFetching = <div style={myStyles.iconFetching}>
