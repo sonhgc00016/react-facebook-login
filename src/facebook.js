@@ -108,6 +108,7 @@ class FacebookLogin extends React.Component {
         boxShadow: 'none'
       },
       btnFB: {
+        position: 'relative',
         minWidth: '250px',
         width: '30%',
         height: '45px',
