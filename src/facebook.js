@@ -79,11 +79,11 @@ class FacebookLogin extends React.Component {
 
   checkLoginState = (response) => {
     if (response.authResponse) {
-      this.setState({isFetching: false});
+      // this.setState({isFetching: false});
       this.props.callback({success: true, data: response.authResponse});
     } else {
       if (this.props.callback) {
-        this.setState({isFetching: false});
+        // this.setState({isFetching: false});
         this.props.callback({success: false, data: response.authResponse});
       }
     }
@@ -108,7 +108,6 @@ class FacebookLogin extends React.Component {
         boxShadow: 'none'
       },
       btnFB: {
-        position: 'relative',
         minWidth: '250px',
         width: '30%',
         height: '45px',
