@@ -48,3 +48,7 @@ $font-family-default: 'Helvetica', sans-serif;
   }
 
 }
+
+button:focus {
+  outline: none;
+}

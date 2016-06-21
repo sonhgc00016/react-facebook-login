@@ -83,7 +83,7 @@ class FacebookLogin extends React.Component {
       this.props.callback({success: true, data: response.authResponse});
     } else {
       if (this.props.callback) {
-        // this.setState({isFetching: false});
+        this.setState({isFetching: false});
         this.props.callback({success: false, data: response.authResponse});
       }
     }
@@ -97,8 +97,8 @@ class FacebookLogin extends React.Component {
   render() {
     const myStyles = {
       iconFetching: {
-        position: 'absolute',
-        top: '0px',
+        position: 'relative',
+        float: 'left',
         left: '40px'
       },
       iconFetchingBound: {
@@ -108,7 +108,6 @@ class FacebookLogin extends React.Component {
         boxShadow: 'none'
       },
       btnFB: {
-        position: 'relative',
         minWidth: '250px',
         width: '30%',
         height: '45px',
@@ -129,10 +128,10 @@ class FacebookLogin extends React.Component {
     var textLogin;
 
     if (this.state.isFetching) {
-      textLogin = <div style={{marginLeft: '40px'}}>Logging In...</div>;
+      textLogin = <div style={{marginTop: '12px'}}>Logging In...</div>;
     } else {
       iconFetching = this.state.isLoading ? iconFetching : '';
-      textLogin = this.state.isLoading ? <div style={{marginLeft: '40px'}}>Loading...</div> : this.props.textButton;
+      textLogin = this.state.isLoading ? <div style={{marginTop: '12px'}}>Loading...</div> : this.props.textButton;
     }
 
     var isDisabled = this.state.isLoading ? true : false;
