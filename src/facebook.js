@@ -128,10 +128,10 @@ class FacebookLogin extends React.Component {
     var textLogin;
 
     if (this.state.isFetching) {
-      textLogin = <div style={{marginTop: '12px'}}>Logging In...</div>;
+      textLogin = <div style={{marginTop: '11px'}}>Logging In...</div>;
     } else {
       iconFetching = this.state.isLoading ? iconFetching : '';
-      textLogin = this.state.isLoading ? <div style={{marginTop: '12px'}}>Loading...</div> : this.props.textButton;
+      textLogin = this.state.isLoading ? <div style={{marginTop: '11px'}}>Loading...</div> : this.props.textButton;
     }
 
     var isDisabled = this.state.isLoading ? true : false;
