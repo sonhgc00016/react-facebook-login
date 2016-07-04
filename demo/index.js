@@ -13,10 +13,11 @@ const responseFacebook = (response) => {
 ReactDOM.render(
   <MuiThemeProvider muiTheme={getMuiTheme()}>
     <FacebookLogin
-      appId="1733556690196497"
+      appId="1735294546758743"
       autoLoad={true}
       callback={responseFacebook}
-      icon="fa-facebook" />
+      icon="fa-facebook"
+    />
   </MuiThemeProvider>,
   document.getElementById('demo')
 );
