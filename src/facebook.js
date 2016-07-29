@@ -16,11 +16,7 @@ class FacebookLogin extends React.Component {
     fields: PropTypes.string,
     cssClass: PropTypes.string,
     version: PropTypes.string,
-    language: PropTypes.string,
-    width: PropTypes.string,
-    heigh: PropTypes.string,
-    minWidth: PropTypes.string,
-    fontSize: PropTypes.string
+    language: PropTypes.string
   };
 
   static defaultProps = {
@@ -32,10 +28,7 @@ class FacebookLogin extends React.Component {
     fields: 'name',
     cssClass: 'kep-login-facebook',
     version: '2.5',
-    language: 'en_US',
-    width: '30%',
-    minWidth: '250px',
-    fontSize: '14px'
+    language: 'en_US'
   };
 
   constructor(props) {
@@ -118,7 +111,7 @@ class FacebookLogin extends React.Component {
     return (
       <div>
         <button
-          style={{width: this.props.width, minWidth: this.props.minWidth, heigh: this.props.heigh, fontSize: this.props.fontSize}}
+          style={this.props.style}
           disabled={isDisabled}
           className={this.props.cssClass + ' ' + this.props.size}
           onClick={this.click}>
