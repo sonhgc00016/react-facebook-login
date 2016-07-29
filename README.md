@@ -106,3 +106,5 @@ export default MyComponent;
 |   version    |  string  |                  2.3                 |
 |   icon       |  string  |                  none                |
 |   language   |  string  |                  en_US               |
+|   width      |  string  |                  30%               |
+|   minWidth   |  string  |                  250px               |
