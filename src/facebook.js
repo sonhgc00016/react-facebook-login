@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import styles from '../styles/facebook.scss';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+import {Icon} from 'react-fa';
 
 class FacebookLogin extends React.Component {
 
@@ -16,12 +16,7 @@ class FacebookLogin extends React.Component {
     fields: PropTypes.string,
     cssClass: PropTypes.string,
     version: PropTypes.string,
-    language: PropTypes.string,
-    width: PropTypes.string,
-    height: PropTypes.number,
-    padding: PropTypes.number,
-    fontSize: PropTypes.number,
-    minWidth: PropTypes.number
+    language: PropTypes.string
   };
 
   static defaultProps = {
@@ -29,16 +24,11 @@ class FacebookLogin extends React.Component {
     scope: 'public_profile, email',
     xfbml: false,
     cookie: false,
-    size: 'metro',
+    size: 'medium',
     fields: 'name',
     cssClass: 'kep-login-facebook',
     version: '2.5',
-    language: 'en_US',
-    width: '30%',
-    height: 45,
-    padding: 0,
-    fontSize: 14,
-    minWidth: 250
+    language: 'en_US'
   };
 
   constructor(props) {
@@ -105,50 +95,22 @@ class FacebookLogin extends React.Component {
   };
 
   render() {
-    const myStyles = {
-      iconFetching: {
-        position: 'relative',
-        float: 'left',
-        left: 40
-      },
-      iconFetchingBound: {
-        display: 'inline-block',
-        position: 'relative',
-        backgroundColor: '#4C69BA',
-        boxShadow: 'none'
-      },
-      btnFB: {
-        minWidth: this.props.minWidth,
-        width: this.props.width,
-        height: this.props.height,
-        padding: this.props.padding,
-        fontSize: this.props.fontSize
-      }
-    };
-    var iconFetching = <div style={myStyles.iconFetching}>
-      <RefreshIndicator
-        size={40}
-        left={10}
-        top={0}
-        status="loading"
-        loadingColor={'white'}
-        style={myStyles.iconFetchingBound}
-      />
-    </div>;
+    var iconFetching;
     var textLogin;
 
     if (this.state.isFetching) {
-      textLogin = <div style={{marginTop: 11}}>Logging In...</div>;
+      iconFetching = <Icon spin name="spinner" />;
+      textLogin = "Logging In...";
     } else {
-      iconFetching = this.state.isLoading ? iconFetching : '';
-      textLogin = this.state.isLoading ? <div style={{marginTop: 11}}>Loading...</div> : this.props.textButton;
+      iconFetching = this.state.isLoading ? <Icon spin name="spinner" /> : <Icon name="facebook" />;
+      textLogin = this.state.isLoading ? 'Loading...' : this.props.textButton;
     }
 
     var isDisabled = this.state.isLoading ? true : false;
 
     return (
       <div>
-        <button style={myStyles.btnFB}
+        <button
           disabled={isDisabled}
           className={this.props.cssClass + ' ' + this.props.size}
           onClick={this.click}>

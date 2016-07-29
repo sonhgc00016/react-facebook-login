@@ -48,7 +48,5 @@
   "peerDependencies": {
     "react": "^0.14.x"
   },
-  "dependencies": {
-    "material-ui": "^0.15.0"
-  }
+  "dependencies": {}
 }

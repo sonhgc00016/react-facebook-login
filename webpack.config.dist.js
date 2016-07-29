@@ -18,7 +18,7 @@ module.exports = {
   externals: {
     'react': 'react',
     'react-dom': 'ReactDOM',
-    'material-ui': 'material-ui'
+    'react-fa': 'react-fa'
   },
 
   output: {

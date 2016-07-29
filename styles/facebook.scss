@@ -11,7 +11,7 @@ $font-family-default: 'Helvetica', sans-serif;
 }
 
 %button {
-  font-family: $font-family-default;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   border-width: calc-responsive(1, 468, 2, 1920);
@@ -19,7 +19,7 @@ $font-family-default: 'Helvetica', sans-serif;
   color: #FFF;
   cursor: pointer;
   display: inline-block;
-  font-size: calc-responsive(14, 468, 18, 1920);
+  font-size: calc-responsive(12, 468, 16, 1920);
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color .3s, border-color .3s;
