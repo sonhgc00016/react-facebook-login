@@ -19,7 +19,8 @@ class FacebookLogin extends React.Component {
     language: PropTypes.string,
     width: PropTypes.string,
     heigh: PropTypes.string,
-    minWidth: PropTypes.string
+    minWidth: PropTypes.string,
+    fontSize: PropTypes.string
   };
 
   static defaultProps = {
@@ -33,7 +34,8 @@ class FacebookLogin extends React.Component {
     version: '2.5',
     language: 'en_US',
     width: '30%',
-    minWidth: '250px'
+    minWidth: '250px',
+    fontSize: '14px'
   };
 
   constructor(props) {
@@ -116,7 +118,7 @@ class FacebookLogin extends React.Component {
     return (
       <div>
         <button
-          style={{width: this.props.width, minWidth: this.props.minWidth, heigh: this.props.heigh}}
+          style={{width: this.props.width, minWidth: this.props.minWidth, heigh: this.props.heigh, fontSize: this.props.fontSize}}
           disabled={isDisabled}
           className={this.props.cssClass + ' ' + this.props.size}
           onClick={this.click}>
