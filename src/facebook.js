@@ -33,7 +33,7 @@ class FacebookLogin extends React.Component {
     version: '2.5',
     language: 'en_US',
     width: '30%',
-    minWidth: 250
+    minWidth: '250px'
   };
 
   constructor(props) {
