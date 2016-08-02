@@ -111,6 +111,7 @@ class FacebookLogin extends React.Component {
     return (
       <div>
         <button
+          type='button'
           style={this.props.style}
           disabled={isDisabled}
           className={this.props.cssClass + ' ' + this.props.size}
