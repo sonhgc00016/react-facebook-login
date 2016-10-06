@@ -90,6 +90,7 @@ class FacebookLogin extends React.Component {
   };
 
   click = () => {
+    this.props.requestDisableAnotherProcess();
     this.setState({ isFetching: true});
     FB.login(this.checkLoginState, { scope: this.props.scope });
   };
@@ -99,7 +100,6 @@ class FacebookLogin extends React.Component {
     var textLogin;
 
     if (this.state.isFetching) {
-      this.props.requestDisableAnotherProcess();
       iconFetching = <Icon spin name="spinner" />;
       textLogin = "Logging In...";
     } else {
