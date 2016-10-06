@@ -103,10 +103,10 @@ class FacebookLogin extends React.Component {
       textLogin = "Logging In...";
     } else {
       iconFetching = this.state.isLoading ? <Icon spin name="spinner" /> : <Icon name="facebook" />;
-      textLogin = this.state.isLoading ? 'Loading...' : this.props.textButton;
+      textLogin = this.state.isLoading || this.props.isLoading ? 'Loading...' : this.props.textButton;
     }
 
-    var isDisabled = this.state.isLoading || this.props.isLoading ? true : false;
+    var isDisabled = this.state.isLoading || this.props.isLoading  ? true : false;
 
     return (
       <div>
