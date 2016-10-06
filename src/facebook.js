@@ -106,7 +106,7 @@ class FacebookLogin extends React.Component {
       textLogin = this.state.isLoading ? 'Loading...' : this.props.textButton;
     }
 
-    var isDisabled = this.state.isLoading ? true : false;
+    var isDisabled = this.state.isLoading || this.props.isLoading ? true : false;
 
     return (
       <div>
