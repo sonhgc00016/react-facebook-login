@@ -99,6 +99,7 @@ class FacebookLogin extends React.Component {
     var textLogin;
 
     if (this.state.isFetching) {
+      this.props.requestDisableAnotherProcess();
       iconFetching = <Icon spin name="spinner" />;
       textLogin = "Logging In...";
     } else {
